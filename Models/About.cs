@@ -1,4 +1,4 @@
-namespace chrsolr_api;
+namespace chrsolr_api.Models;
 
 public class About
 {
