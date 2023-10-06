@@ -14,15 +14,18 @@ public class AboutController : ControllerBase
     }
 
     [HttpGet(Name = "GetAbout")]
-    public About Get()
+    public ActionResult<About> Get()
     {
-        var about = new About
+        string[] descriptions = { "First Paragraph", "Second Paragraph", "Third Paragraph" };
+
+        About about = new()
         {
             FirstName = "Christian",
             LastName = "Soler",
-            NickName = "Chrsolr"
+            NickName = "Chrsolr",
+            Descriptions = descriptions
         };
 
-        return about;
+        return Ok(about);
     }
 }
