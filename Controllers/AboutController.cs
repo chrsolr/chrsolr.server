@@ -7,18 +7,18 @@ namespace chrsolr_api.Controllers;
 public class AboutController : ControllerBase
 {
     private readonly ILogger<AboutController> _logger;
-    private readonly IAbout _about;
+    private readonly IAboutService _aboutService;
 
-    public AboutController(ILogger<AboutController> logger, IAbout about)
+    public AboutController(ILogger<AboutController> logger, IAboutService aboutService)
     {
         _logger = logger;
-        _about = about;
+        _aboutService = aboutService;
     }
 
     [HttpGet(Name = "GetAbout")]
-    public async Task<ActionResult<About>> Get()
+    public async Task<ActionResult<AboutDTO>> Get()
     {
-        About about = await _about.GetAboutMe();
+        AboutDTO about = await _aboutService.GetAboutMe();
         return Ok(about);
     }
 }
