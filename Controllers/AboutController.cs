@@ -16,16 +16,6 @@ public class AboutController : ControllerBase
     [HttpGet(Name = "GetAbout")]
     public ActionResult<About> Get()
     {
-        string[] descriptions = { "First Paragraph", "Second Paragraph", "Third Paragraph" };
-
-        About about = new()
-        {
-            FirstName = "Christian",
-            LastName = "Soler",
-            NickName = "Chrsolr",
-            Descriptions = descriptions
-        };
-
-        return Ok(about);
+        return Ok(new About());
     }
 }
