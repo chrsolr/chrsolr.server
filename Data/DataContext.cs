@@ -7,6 +7,10 @@ public class DataContext : DbContext
 
     public DbSet<Social> Socials => Set<Social>();
     public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
+    public DbSet<Education> Educations => Set<Education>();
+    public DbSet<Responsibility> Responsibilities => Set<Responsibility>();
+    public DbSet<Job> Jobs => Set<Job>();
+    public DbSet<Technology> Technologies => Set<Technology>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,7 +41,7 @@ public class DataContext : DbContext
             .HasData(
                 new About
                 {
-                    FirstName = "Chrisian",
+                    FirstName = "Christian",
                     LastName = "Soler",
                     NickName = "Chrsolr",
                     Email = "chr.solr@gmail.com",
