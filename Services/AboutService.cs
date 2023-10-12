@@ -9,27 +9,46 @@ public class AboutService : IAboutService
 
     public async Task<AboutDTO> GetAboutMe()
     {
-        var about = new About { Educations = new List<Education>(), Jobs = new List<Job>() };
-        var socials = await _context.Socials
-            .Select(s => new SocialDTO { Name = s.Name, Url = s.Url })
-            .ToListAsync();
-
-        var skills = about.Jobs.Select(j => j.Technologies.Select(t => t.Name)).ToArray();
-
-        Console.WriteLine(skills);
-
-        return new AboutDTO
+        string[] aboutMe =
         {
-            FirstName = about.FirstName,
-            LastName = about.LastName,
-            NickName = about.NickName,
-            Email = about.Email,
-            AboutMe = about.AboutMe,
-            ImageUrl = about.ImageUrl,
-            Socials = socials,
-            Educations = about.Educations,
-            Jobs = about.Jobs,
-            Skills = new string[] { }
+            "As a passionate and dedicated individual, I take pride in my work and approach each project with enthusiasm. Driven by challenges, I thrive in collaborative team environments and excel under pressure while juggling multiple projects.",
+            "With over 6 years of experience as a Full Stack Developer, I've honed my skills in designing, developing, and implementing diverse applications using a wide array of technologies and programming languages. I am actively seeking a role in a company that values a supportive environment, where I can contribute my expertise, learn, and grow alongside fellow programming enthusiasts."
         };
+
+        var about = await _context.About
+            .Select(
+                v =>
+                    new AboutDTO
+                    {
+                        FirstName = v.FirstName,
+                        LastName = v.LastName,
+                        NickName = v.NickName,
+                        Email = v.Email,
+                        ImageUrl = v.ImageUrl,
+                        Socials = v.Socials
+                            .Where(s => s.IsActive)
+                            .Select(s => new SocialDTO { Name = s.Name, Url = s.Url })
+                            .ToList(),
+                        Educations = v.Educations
+                            .Select(
+                                v =>
+                                    new EducationDTO
+                                    {
+                                        Location = v.Location,
+                                        Description = v.Description,
+                                        Order = v.Order
+                                    }
+                            )
+                            .OrderBy(v => v.Order)
+                            .ToList()
+                    }
+            )
+            .FirstOrDefaultAsync();
+
+        // var skills = about.Jobs.Select(j => j.Technologies.Select(t => t.Name)).ToArray();
+
+        // Console.WriteLine(skills);
+
+        return about;
     }
 }

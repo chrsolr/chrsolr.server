@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using chrsolr_api.Data;
 
@@ -11,9 +12,11 @@ using chrsolr_api.Data;
 namespace chrsolr_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231012232048_added-educations")]
+    partial class addededucations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,32 +84,6 @@ namespace chrsolr_api.Migrations
                     b.HasIndex("AboutId");
 
                     b.ToTable("Educations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("62b5e7c2-bc88-49dc-b811-b362e38c51c9"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
-                            Description = "9 Week .NET Full Stack Program, 8/2014",
-                            Location = "Coder Camps, Pearland, TX",
-                            Order = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("e5f68253-5aa0-4d68-8814-a32962d8da63"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
-                            Description = "Bachelor's Degree in Computer Science, (78 Credits)",
-                            Location = "Rhode Island College, Providence, RI",
-                            Order = 2
-                        },
-                        new
-                        {
-                            Id = new Guid("46e2a2d7-3d96-4b16-82de-0cca0c51f624"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
-                            Description = "Associate Degree in Applied Science in Information Technology, 08/2011",
-                            Location = "Monroe College, Bronx, NY",
-                            Order = 3
-                        });
                 });
 
             modelBuilder.Entity("Job", b =>
@@ -188,48 +165,48 @@ namespace chrsolr_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("35c57cb8-819e-45c7-8b3b-f50116bc5219"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("275e46f0-9e5d-4f91-854d-c23e68a5b529"),
+                            AboutId = new Guid("5d9adf33-ff0c-4667-933f-5589799af962"),
                             IsActive = true,
                             Name = "Github",
                             Url = "https://github.com/chrsolr/"
                         },
                         new
                         {
-                            Id = new Guid("02add8d5-23d3-47dd-b09a-98821cdd638b"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("603d2561-538c-48a8-b984-a94a78dd68c6"),
+                            AboutId = new Guid("5d9adf33-ff0c-4667-933f-5589799af962"),
                             IsActive = true,
                             Name = "LinkedIn",
                             Url = "https://www.linkedin.com/in/christiansoler/"
                         },
                         new
                         {
-                            Id = new Guid("7d69deba-fff5-4a29-9693-332d6b89eb86"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("09ef3c9c-83ff-43f6-9a0e-7a4684baf311"),
+                            AboutId = new Guid("5d9adf33-ff0c-4667-933f-5589799af962"),
                             IsActive = true,
                             Name = "Codepen",
                             Url = "https://codepen.io/chrsolr"
                         },
                         new
                         {
-                            Id = new Guid("c828d676-8a23-4618-91ec-d7eb318698a1"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("7d4b2150-501b-4114-aeef-b74744e318d1"),
+                            AboutId = new Guid("5d9adf33-ff0c-4667-933f-5589799af962"),
                             IsActive = true,
                             Name = "Instagram",
                             Url = "https://www.instagram.com/7w3n7y/"
                         },
                         new
                         {
-                            Id = new Guid("0797752d-78d6-44ae-bb81-7947b1de9213"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("969c2ac8-18ce-43b9-9291-5797a05438d0"),
+                            AboutId = new Guid("5d9adf33-ff0c-4667-933f-5589799af962"),
                             IsActive = false,
                             Name = "Twitch",
                             Url = "https://www.twitch.tv/7w3n7y"
                         },
                         new
                         {
-                            Id = new Guid("8e4d37f6-6a80-49ee-8117-747802945223"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("7e05000e-ac9b-44ef-8a93-8347ebee8703"),
+                            AboutId = new Guid("5d9adf33-ff0c-4667-933f-5589799af962"),
                             IsActive = false,
                             Name = "YouTube",
                             Url = "https://www.youtube.com/@chrsolr"
@@ -287,7 +264,7 @@ namespace chrsolr_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("5d9adf33-ff0c-4667-933f-5589799af962"),
                             Email = "chr.solr@gmail.com",
                             FirstName = "Christian",
                             ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using chrsolr_api.Data;
 
@@ -11,9 +12,11 @@ using chrsolr_api.Data;
 namespace chrsolr_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231012222306_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace chrsolr_api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AboutId")
+                    b.Property<Guid?>("AboutId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -73,40 +76,11 @@ namespace chrsolr_api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AboutId");
 
                     b.ToTable("Educations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("62b5e7c2-bc88-49dc-b811-b362e38c51c9"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
-                            Description = "9 Week .NET Full Stack Program, 8/2014",
-                            Location = "Coder Camps, Pearland, TX",
-                            Order = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("e5f68253-5aa0-4d68-8814-a32962d8da63"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
-                            Description = "Bachelor's Degree in Computer Science, (78 Credits)",
-                            Location = "Rhode Island College, Providence, RI",
-                            Order = 2
-                        },
-                        new
-                        {
-                            Id = new Guid("46e2a2d7-3d96-4b16-82de-0cca0c51f624"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
-                            Description = "Associate Degree in Applied Science in Information Technology, 08/2011",
-                            Location = "Monroe College, Bronx, NY",
-                            Order = 3
-                        });
                 });
 
             modelBuilder.Entity("Job", b =>
@@ -188,48 +162,48 @@ namespace chrsolr_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("35c57cb8-819e-45c7-8b3b-f50116bc5219"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("ae18e343-3eee-409b-9cf7-8eb7494043d8"),
+                            AboutId = new Guid("fa2ba8ed-adaf-40c8-8d08-820c7d27fcb6"),
                             IsActive = true,
                             Name = "Github",
                             Url = "https://github.com/chrsolr/"
                         },
                         new
                         {
-                            Id = new Guid("02add8d5-23d3-47dd-b09a-98821cdd638b"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("59b06f34-f8cf-41d4-8944-f8b39d676484"),
+                            AboutId = new Guid("fa2ba8ed-adaf-40c8-8d08-820c7d27fcb6"),
                             IsActive = true,
                             Name = "LinkedIn",
                             Url = "https://www.linkedin.com/in/christiansoler/"
                         },
                         new
                         {
-                            Id = new Guid("7d69deba-fff5-4a29-9693-332d6b89eb86"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("87d3dafa-98c2-4a5e-819b-a806f64fb956"),
+                            AboutId = new Guid("fa2ba8ed-adaf-40c8-8d08-820c7d27fcb6"),
                             IsActive = true,
                             Name = "Codepen",
                             Url = "https://codepen.io/chrsolr"
                         },
                         new
                         {
-                            Id = new Guid("c828d676-8a23-4618-91ec-d7eb318698a1"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("87018ea8-5c44-42e2-9bd3-9ec95d8e7fb5"),
+                            AboutId = new Guid("fa2ba8ed-adaf-40c8-8d08-820c7d27fcb6"),
                             IsActive = true,
                             Name = "Instagram",
                             Url = "https://www.instagram.com/7w3n7y/"
                         },
                         new
                         {
-                            Id = new Guid("0797752d-78d6-44ae-bb81-7947b1de9213"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("6be3fc14-78d2-4942-a6a4-b58a08a58ada"),
+                            AboutId = new Guid("fa2ba8ed-adaf-40c8-8d08-820c7d27fcb6"),
                             IsActive = false,
                             Name = "Twitch",
                             Url = "https://www.twitch.tv/7w3n7y"
                         },
                         new
                         {
-                            Id = new Guid("8e4d37f6-6a80-49ee-8117-747802945223"),
-                            AboutId = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("30b32da4-cffb-4a7a-b889-fd6296453054"),
+                            AboutId = new Guid("fa2ba8ed-adaf-40c8-8d08-820c7d27fcb6"),
                             IsActive = false,
                             Name = "YouTube",
                             Url = "https://www.youtube.com/@chrsolr"
@@ -287,7 +261,7 @@ namespace chrsolr_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c2ff80e3-d15b-45c9-a37c-f22dbf15a456"),
+                            Id = new Guid("fa2ba8ed-adaf-40c8-8d08-820c7d27fcb6"),
                             Email = "chr.solr@gmail.com",
                             FirstName = "Christian",
                             ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
@@ -298,13 +272,9 @@ namespace chrsolr_api.Migrations
 
             modelBuilder.Entity("Education", b =>
                 {
-                    b.HasOne("chrsolr_api.Models.About", "About")
+                    b.HasOne("chrsolr_api.Models.About", null)
                         .WithMany("Educations")
-                        .HasForeignKey("AboutId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("About");
+                        .HasForeignKey("AboutId");
                 });
 
             modelBuilder.Entity("Job", b =>

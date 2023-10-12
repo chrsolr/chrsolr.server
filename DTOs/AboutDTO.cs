@@ -6,14 +6,14 @@ public class AboutDTO
 {
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
-    public required string NickName { get; set; }
+    public string? NickName { get; set; }
     
     [EmailAddress]
     public required string Email { get; set; }
-    public required string[] AboutMe { get; set; }
-    public required string ImageUrl { get; set; }
-    public required List<SocialDTO> Socials { get; set; }
-    public required List<Education> Educations { get; set; }
-    public required List<Job> Jobs { get; set; }
-    public required string[] Skills { get; set; }
+    public string[]? AboutMe { get; set; }
+    public string? ImageUrl { get; set; }
+    public List<SocialDTO> Socials { get; set; } = new List<SocialDTO>();
+    public List<EducationDTO> Educations { get; set; } = new List<EducationDTO>();
+    public List<Job>? Jobs { get; set; }
+    public string[]? Skills { get; set; }
 }

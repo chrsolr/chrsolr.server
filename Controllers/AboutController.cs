@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace chrsolr_api.Controllers;
 
 [ApiController]
-[Route("api/v1/[controller]")]
+[Route("api/v1/about")]
 public class AboutController : ControllerBase
 {
     private readonly ILogger<AboutController> _logger;
@@ -19,6 +19,12 @@ public class AboutController : ControllerBase
     public async Task<ActionResult<AboutDTO>> Get()
     {
         AboutDTO about = await _aboutService.GetAboutMe();
+
+        if (about == null)
+        {
+            return NotFound();
+        }
+
         return Ok(about);
     }
 }
