@@ -13,4 +13,7 @@ public class AboutDTO
     public required string[] AboutMe { get; set; }
     public required string ImageUrl { get; set; }
     public required List<SocialDTO> Socials { get; set; }
+    public required List<Education> Educations { get; set; }
+    public required List<Job> Jobs { get; set; }
+    public required string[] Skills { get; set; }
 }

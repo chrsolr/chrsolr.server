@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 public class BlogPost : IAudit
 {
     public Guid Id { get; set; }
@@ -7,7 +9,10 @@ public class BlogPost : IAudit
     public required string ImageUrl { get; set; }
     public required string Markdown { get; set; }
     public required bool Active { get; set; }
+    
+    [NotMapped]
     public DateOnly CreatedAt { get; set; }
+    [NotMapped]
     public DateOnly UpdatedAt { get; set; }
 
     // public required Author Author { get; set; }

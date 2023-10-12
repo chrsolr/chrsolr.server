@@ -9,10 +9,14 @@ public class AboutService : IAboutService
 
     public async Task<AboutDTO> GetAboutMe()
     {
-        var about = new About();
+        var about = new About { Educations = new List<Education>(), Jobs = new List<Job>() };
         var socials = await _context.Socials
             .Select(s => new SocialDTO { Name = s.Name, Url = s.Url })
             .ToListAsync();
+
+        var skills = about.Jobs.Select(j => j.Technologies.Select(t => t.Name)).ToArray();
+
+        Console.WriteLine(skills);
 
         return new AboutDTO
         {
@@ -22,7 +26,10 @@ public class AboutService : IAboutService
             Email = about.Email,
             AboutMe = about.AboutMe,
             ImageUrl = about.ImageUrl,
-            Socials = socials
+            Socials = socials,
+            Educations = about.Educations,
+            Jobs = about.Jobs,
+            Skills = new string[] { }
         };
     }
 }

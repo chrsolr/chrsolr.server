@@ -47,6 +47,8 @@ public class DataContext : DbContext
                     Email = "chr.solr@gmail.com",
                     ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
                     AboutMe = aboutMe,
+                    Educations = new List<Education>(),
+                    Jobs = new List<Job>()
                 }
             );
     }
