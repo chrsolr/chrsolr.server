@@ -10,12 +10,12 @@ public class About
         "With over 6 years of experience as a Full Stack Developer, I've honed my skills in designing, developing, and implementing diverse applications using a wide array of technologies and programming languages. I am actively seeking a role in a company that values a supportive environment, where I can contribute my expertise, learn, and grow alongside fellow programming enthusiasts."
     };
 
-    public string FirstName { get; } = "Christian";
-    public string LastName { get; } = "Soler";
-    public string NickName { get; } = "Chrsolr";
+    public string FirstName { get; set; } = "Christian";
+    public string LastName { get; set; } = "Soler";
+    public string NickName { get; set; } = "Chrsolr";
 
     [EmailAddress]
     public string Email { get; set; } = "chr.solr@gmail.com";
-    public string[] AboutMe { get; } = aboutMe;
-    public string ImageUrl { get; } = "https://i.imgur.com/9X6lkc5.jpg";
+    public string[] AboutMe { get; set; } = aboutMe;
+    public string ImageUrl { get; set; } = "https://i.imgur.com/9X6lkc5.jpg";
 }
