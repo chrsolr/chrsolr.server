@@ -6,4 +6,5 @@ public class DataContext : DbContext
         : base(options) { }
 
     public DbSet<Social> Socials => Set<Social>();
+    public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
 }
