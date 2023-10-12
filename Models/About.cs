@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace chrsolr_api.Models;
 
 public class About
@@ -11,6 +13,9 @@ public class About
     public string FirstName { get; } = "Christian";
     public string LastName { get; } = "Soler";
     public string NickName { get; } = "Chrsolr";
+
+    [EmailAddress]
+    public string Email { get; set; } = "chr.solr@gmail.com";
     public string[] AboutMe { get; } = aboutMe;
     public string ImageUrl { get; } = "https://i.imgur.com/9X6lkc5.jpg";
 }

@@ -19,6 +19,7 @@ public class AboutService : IAboutService
             FirstName = about.FirstName,
             LastName = about.LastName,
             NickName = about.NickName,
+            Email = about.Email, 
             AboutMe = about.AboutMe,
             ImageUrl = about.ImageUrl,
             Socials = socials
