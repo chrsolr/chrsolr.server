@@ -15,7 +15,7 @@ public class AboutController : ControllerBase
         _aboutService = aboutService;
     }
 
-    [HttpGet(Name = "GetAbout")]
+    [HttpGet]
     public async Task<ActionResult<AboutDTO>> Get()
     {
         AboutDTO about = await _aboutService.GetAboutMe();
