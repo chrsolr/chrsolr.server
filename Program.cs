@@ -28,8 +28,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.Urls.Add("http://0.0.0.0:8080");
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
