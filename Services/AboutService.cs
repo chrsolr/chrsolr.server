@@ -40,14 +40,33 @@ public class AboutService : IAboutService
                                     }
                             )
                             .OrderBy(v => v.Order)
+                            .ToList(),
+                        Jobs = v.Jobs
+                            .Select(
+                                v =>
+                                    new JobDTO
+                                    {
+                                        CompanyName = v.CompanyName,
+                                        Title = v.Title,
+                                        StartDate = v.StartDate,
+                                        EndDate = v.EndDate,
+                                        Technologies = v.Technologies.Select(t => t.Name).ToArray(),
+                                        Responsibilities = v.Responsibilities
+                                            .Select(r => r.Name)
+                                            .ToArray()
+                                    }
+                            )
                             .ToList()
                     }
             )
             .FirstOrDefaultAsync();
 
-        // var skills = about.Jobs.Select(j => j.Technologies.Select(t => t.Name)).ToArray();
+        string[] allTechnologiesUsed = about!.Jobs
+            .SelectMany(j => j.Technologies.Select(j => j).ToArray())
+            .ToArray();
 
-        // Console.WriteLine(skills);
+        HashSet<string> uniqueSkills = new HashSet<string>(allTechnologiesUsed);
+        about.Skills = uniqueSkills.Order().ToArray();
 
         return about;
     }

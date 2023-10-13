@@ -14,6 +14,6 @@ public class AboutDTO
     public string? ImageUrl { get; set; }
     public List<SocialDTO> Socials { get; set; } = new List<SocialDTO>();
     public List<EducationDTO> Educations { get; set; } = new List<EducationDTO>();
-    public List<Job>? Jobs { get; set; }
+    public List<JobDTO> Jobs { get; set; } = new List<JobDTO>();
     public string[]? Skills { get; set; }
 }

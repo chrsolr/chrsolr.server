@@ -7,13 +7,13 @@ public class About
     public Guid Id { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
-    public string? NickName { get; set; }
+    public required string NickName { get; set; } = "";
 
     [EmailAddress]
     public required string Email { get; set; }
-    public string? ImageUrl { get; set; }
+    public required string ImageUrl { get; set; } = "";
     public List<Education> Educations { get; set; } = new List<Education>();
-    public List<Job>? Jobs { get; set; }
+    public List<Job> Jobs { get; set; } = new List<Job>();
     public List<Social> Socials { get; set; } = new List<Social>();
 
     // public string[]? AboutMe { get; set; }
