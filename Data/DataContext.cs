@@ -30,8 +30,6 @@ public class DataContext : DbContext
             NickName = "Chrsolr",
             Email = "chr.solr@gmail.com",
             ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
-            // AboutMe = aboutMe,
-            Jobs = new List<Job>(),
         };
 
         var socials = new List<Social>
@@ -371,12 +369,6 @@ public class DataContext : DbContext
                 Name = "LINQ",
                 JobId = codercampId
             },
-        };
-
-        string[] aboutMe =
-        {
-            "As a passionate and dedicated individual, I take pride in my work and approach each project with enthusiasm. Driven by challenges, I thrive in collaborative team environments and excel under pressure while juggling multiple projects.",
-            "With over 6 years of experience as a Full Stack Developer, I've honed my skills in designing, developing, and implementing diverse applications using a wide array of technologies and programming languages. I am actively seeking a role in a company that values a supportive environment, where I can contribute my expertise, learn, and grow alongside fellow programming enthusiasts."
         };
 
         modelBuilder.Entity<About>().HasData(about);
