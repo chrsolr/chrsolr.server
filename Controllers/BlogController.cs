@@ -5,15 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 public class BlogController : ControllerBase
 {
     private readonly ILogger<BlogController> _logger;
+    private readonly IBlogPostService _blogPostService;
 
-    public BlogController(ILogger<BlogController> logger)
+    public BlogController(ILogger<BlogController> logger, IBlogPostService blogPostService)
     {
         _logger = logger;
+        _blogPostService = blogPostService;
     }
 
     [HttpGet]
-    public async Task<ActionResult<dynamic>> Get()
+    public async Task<ActionResult<List<BlogPostDTO>>> Get()
     {
-        return Ok("Ok");
+        var post = await _blogPostService.GetAll();
+        return Ok(post);
     }
 }
