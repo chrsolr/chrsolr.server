@@ -8,7 +8,7 @@ public class BlogPost : IAudit
     public required string Slug { get; set; }
     public required string ImageUrl { get; set; }
     public required string Markdown { get; set; }
-    public required bool Active { get; set; }
+    public required bool IsActive { get; set; }
     
     [NotMapped]
     public DateOnly CreatedAt { get; set; }
