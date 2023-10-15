@@ -8,6 +8,6 @@ public class Social
     public bool IsActive { get; set; } = true;
 
     [ForeignKey("About")]
-    public Guid AboutId { get; set; }
-    public About About { get; set; }
+    public required Guid AboutId { get; set; }
+    public About? About { get; set; } = null;
 }

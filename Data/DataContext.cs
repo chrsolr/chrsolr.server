@@ -5,13 +5,14 @@ public class DataContext : DbContext
     public DataContext(DbContextOptions<DataContext> options)
         : base(options) { }
 
-    public DbSet<About> About => Set<About>();
-    public DbSet<Social> Socials => Set<Social>();
-    public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
-    public DbSet<Education> Educations => Set<Education>();
-    public DbSet<Responsibility> Responsibilities => Set<Responsibility>();
-    public DbSet<Job> Jobs => Set<Job>();
-    public DbSet<Technology> Technologies => Set<Technology>();
+    // public DbSet<User> Users => Set<About>();
+    // public DbSet<About> About => Set<About>();
+    // public DbSet<Social> Socials => Set<Social>();
+    // public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
+    // public DbSet<Education> Educations => Set<Education>();
+    // public DbSet<Responsibility> Responsibilities => Set<Responsibility>();
+    // public DbSet<Job> Jobs => Set<Job>();
+    // public DbSet<Technology> Technologies => Set<Technology>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -371,11 +372,11 @@ public class DataContext : DbContext
             },
         };
 
-        modelBuilder.Entity<About>().HasData(about);
-        modelBuilder.Entity<Social>().HasData(socials);
-        modelBuilder.Entity<Education>().HasData(educations);
-        modelBuilder.Entity<Responsibility>().HasData(responsibilities);
-        modelBuilder.Entity<Technology>().HasData(technologies);
-        modelBuilder.Entity<Job>().HasData(jobs);
+        // modelBuilder.Entity<About>().HasData(about);
+        // modelBuilder.Entity<Social>().HasData(socials);
+        // modelBuilder.Entity<Education>().HasData(educations);
+        // modelBuilder.Entity<Responsibility>().HasData(responsibilities);
+        // modelBuilder.Entity<Technology>().HasData(technologies);
+        // modelBuilder.Entity<Job>().HasData(jobs);
     }
 }

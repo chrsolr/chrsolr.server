@@ -2,7 +2,9 @@ USE [chrsolr]
 GO
 
 INSERT INTO [dbo].[BlogPosts]
-  ([Id], [Title],[Summary],[Slug],[ImageUrl],[Markdown],[IsActive])
+(
+  [Id], [Title],[Summary],[Slug],[ImageUrl],[Markdown],[IsActive]
+)
 VALUES
 (
   NEWID(),

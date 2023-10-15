@@ -1,28 +1,18 @@
+using AutoMapper;
+
 public class BlogPostService : IBlogPostService
 {
     private readonly DataContext _context;
+    private readonly IMapper _mapper;
 
-    public BlogPostService(DataContext context)
+    public BlogPostService(DataContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     public async Task<List<BlogPostDTO>> GetAll()
     {
-        var post = await _context.BlogPosts
-            .Select(
-                v =>
-                    new BlogPostDTO
-                    {
-                        Title = v.Title,
-                        Summary = v.Summary,
-                        Markdown = v.Markdown,
-                        ImageUrl = v.ImageUrl,
-                        IsActive = v.IsActive,
-                        Slug = v.Slug
-                    }
-            )
-            .ToListAsync();
-        return post;
+        return await _context.BlogPosts.Select(post => _mapper.Map<BlogPostDTO>(post)).ToListAsync();
     }
 }

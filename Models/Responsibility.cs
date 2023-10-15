@@ -6,6 +6,6 @@ public class Responsibility
     public required string Name { get; set; }
 
     [ForeignKey("Job")]
-    public Guid JobId { get; set; }
-    public Job Job { get; set; }
+    public required Guid JobId { get; set; }
+    public Job? Job { get; set; }
 }
