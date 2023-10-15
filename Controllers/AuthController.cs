@@ -5,16 +5,18 @@ using Microsoft.AspNetCore.Mvc;
 public class AuthController : ControllerBase
 {
     private readonly ILogger<AuthController> _logger;
+    private readonly IConfiguration _configuration;
 
-    public AuthController(ILogger<AuthController> logger)
+    public AuthController(ILogger<AuthController> logger, IConfiguration configuration)
     {
         _logger = logger;
+        _configuration = configuration;
     }
 
     [HttpPost("login")]
     public ActionResult<string> Login(UserLoginDTO userLoginDTO)
     {
-        Console.WriteLine($"{userLoginDTO.Username}-{userLoginDTO.Password}");
-        return Ok("TOKEN HERE");
+        var token = new JWT(_configuration).GenerateToken(userLoginDTO.Username);
+        return Ok(token);
     }
 }
