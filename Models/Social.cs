@@ -7,7 +7,7 @@ public class Social
     public required string Url { get; set; }
     public bool IsActive { get; set; } = true;
 
-    [ForeignKey("About")]
-    public required Guid AboutId { get; set; }
-    public About? About { get; set; } = null;
+    [ForeignKey("User")]
+    public required Guid UserId { get; set; }
+    public required User User { get; set; }
 }

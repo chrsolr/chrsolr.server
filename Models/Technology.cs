@@ -7,5 +7,5 @@ public class Technology
     
     [ForeignKey("Job")]
     public Guid JobId { get; set; }
-    public Job Job { get; set; }
+    public Job? Job { get; set; }
 }
