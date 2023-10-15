@@ -3,6 +3,7 @@ global using chrsolr_api.Services;
 global using chrsolr_api.DTOs;
 global using Microsoft.EntityFrameworkCore;
 global using chrsolr_api.Data;
+global using chrsolr_api.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;

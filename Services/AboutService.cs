@@ -1,3 +1,5 @@
+namespace chrsolr_api.Services;
+
 public class AboutService : IAboutService
 {
     private readonly DataContext _context;

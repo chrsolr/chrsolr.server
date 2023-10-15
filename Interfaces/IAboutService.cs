@@ -1,4 +1,4 @@
-namespace chrsolr_api.Services;
+namespace chrsolr_api.Interfaces;
 
 public interface IAboutService
 {
