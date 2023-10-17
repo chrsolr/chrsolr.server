@@ -13,6 +13,7 @@ var config = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(
+    // options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
