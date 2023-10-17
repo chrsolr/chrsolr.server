@@ -7,5 +7,5 @@ public class Responsibility
 
     [ForeignKey("Job")]
     public required Guid JobId { get; set; }
-    public Job? Job { get; set; }
+    public Job Job { get; set; }
 }

@@ -41,67 +41,27 @@ public class AboutService : IAboutService
                     Order = edu.Order,
                     Location = edu.Location,
                     Description = edu.Description
+                }).ToList(),
+                Jobs = user.Jobs.Select(job => new JobDTO
+                {
+                    CompanyName = job.CompanyName,
+                    Title = job.Title,
+                    StartDate = job.StartDate,
+                    EndDate = job.EndDate,
+                    Technologies = job.Technologies.Select(tech => tech.Name).ToArray(),
+                    Responsibilities = job.Responsibilities
+                        .Select(responsibility => responsibility.Name)
+                        .ToArray()
                 }).ToList()
             })
             .FirstOrDefaultAsync();
 
+        string[] allTechnologiesUsed = user!.Jobs
+            .SelectMany(j => j.Technologies.Select(j => j).ToArray())
+            .ToArray();
+
+        user.Skills = new HashSet<string>(allTechnologiesUsed).Order().ToArray(); ;
 
         return user;
-
-        // var about = await _context.About
-        //     .Select(
-        //         v =>
-        //             new AboutDTO
-        //             {
-        //                 FirstName = v.FirstName,
-        //                 LastName = v.LastName,
-        //                 NickName = v.NickName,
-        //                 Email = v.Email,
-        //                 ImageUrl = v.ImageUrl,
-        //                 Socials = v.Socials
-        //                     .Where(s => s.IsActive)
-        //                     .Select(s => new SocialDTO { Name = s.Name, Url = s.Url })
-        //                     .ToList(),
-        //                 Educations = v.Educations
-        //                     .Select(
-        //                         v =>
-        //                             new EducationDTO
-        //                             {
-        //                                 Location = v.Location,
-        //                                 Description = v.Description,
-        //                                 Order = v.Order
-        //                             }
-        //                     )
-        //                     .OrderBy(v => v.Order)
-        //                     .ToList(),
-        //                 Jobs = v.Jobs
-        //                     .Select(
-        //                         v =>
-        //                             new JobDTO
-        //                             {
-        //                                 CompanyName = v.CompanyName,
-        //                                 Title = v.Title,
-        //                                 StartDate = v.StartDate,
-        //                                 EndDate = v.EndDate,
-        //                                 Technologies = v.Technologies.Select(t => t.Name).ToArray(),
-        //                                 Responsibilities = v.Responsibilities
-        //                                     .Select(r => r.Name)
-        //                                     .ToArray()
-        //                             }
-        //                     )
-        //                     .ToList()
-        //             }
-        //     )
-        //     .FirstOrDefaultAsync();
-
-        // string[] allTechnologiesUsed = about!.Jobs
-        //     .SelectMany(j => j.Technologies.Select(j => j).ToArray())
-        //     .ToArray();
-
-        // HashSet<string> uniqueSkills = new HashSet<string>(allTechnologiesUsed);
-        // about.Skills = uniqueSkills.Order().ToArray();
-        // about.AboutMe = aboutMe;
-
-        // return about;
     }
 }

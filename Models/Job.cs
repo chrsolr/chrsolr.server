@@ -10,7 +10,7 @@ public class Job
     public required List<Technology> Technologies { get; set; }
     public required List<Responsibility> Responsibilities { get; set; }
 
-    [ForeignKey("About")]
-    public Guid AboutId { get; set; }
-    public About About { get; set; }
+    [ForeignKey("User")]
+    public required Guid UserId { get; set; }
+    public User User { get; set; }
 }
