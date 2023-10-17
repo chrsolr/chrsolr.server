@@ -6,8 +6,8 @@ public class DataContext : DbContext
         : base(options) { }
 
     public DbSet<User> Users => Set<User>();
-    public DbSet<Social> Socials => Set<Social>();
-    public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
+    // public DbSet<Social> Socials => Set<Social>();
+    // public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
     // public DbSet<About> About => Set<About>();
     // public DbSet<Education> Educations => Set<Education>();
     // public DbSet<Responsibility> Responsibilities => Set<Responsibility>();
@@ -18,11 +18,25 @@ public class DataContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // var userId = Guid.NewGuid();
+        var userId = Guid.NewGuid();
         // var aboutId = Guid.NewGuid();
         // var innowattsId = Guid.NewGuid();
         // var preventiceId = Guid.NewGuid();
         // var codercampId = Guid.NewGuid();
+
+        var user = new User
+        {
+            Id = userId,
+            FirstName = "Christian",
+            LastName = "Soler",
+            NickName = "Chrsolr",
+            Email = "chr.solr@gmail.com",
+            Username = "chrsolr",
+            ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
+            Password = "",
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
 
         // var about = new About()
         // {
@@ -373,6 +387,7 @@ public class DataContext : DbContext
         //     },
         // };
 
+        modelBuilder.Entity<User>().HasData(user);
         // modelBuilder.Entity<About>().HasData(about);
         // modelBuilder.Entity<Social>().HasData(socials);
         // modelBuilder.Entity<Education>().HasData(educations);

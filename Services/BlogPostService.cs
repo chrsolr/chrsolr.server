@@ -13,6 +13,7 @@ public class BlogPostService : IBlogPostService
 
     public async Task<List<BlogPostDTO>> GetAll()
     {
-        return await _context.BlogPosts.Select(post => _mapper.Map<BlogPostDTO>(post)).ToListAsync();
+        return new List<BlogPostDTO>();
+        // return await _context.BlogPosts.Select(post => _mapper.Map<BlogPostDTO>(post)).ToListAsync();
     }
 }
