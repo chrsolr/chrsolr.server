@@ -7,7 +7,7 @@ public class Education
     public required string Location { get; set; }
     public required string Description { get; set; }
 
-    [ForeignKey("About")]
-    public Guid AboutId { get; set; }
-    public About About { get; set; }
+    [ForeignKey("User")]
+    public required Guid UserId { get; set; }
+    public User User { get; set; }
 }

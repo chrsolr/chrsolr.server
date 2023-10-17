@@ -30,11 +30,18 @@ public class AboutService : IAboutService
                 AboutMe = aboutMe,
                 CreatedAt = user.CreatedAt,
                 UpdatedAt = user.UpdatedAt,
-                Socials = user.Socials.Select(social => new SocialDTO
+                Socials = user.Socials.Where(social => social.IsActive)
+                    .Select(social => new SocialDTO
+                    {
+                        Name = social.Name,
+                        Url = social.Url
+                    }).ToList(),
+                Educations = user.Educations.Select(edu => new EducationDTO
                 {
-                    Name = social.Name,
-                    Url = social.Url
-                }).ToList(),
+                    Order = edu.Order,
+                    Location = edu.Location,
+                    Description = edu.Description
+                }).ToList()
             })
             .FirstOrDefaultAsync();
 

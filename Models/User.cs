@@ -10,7 +10,7 @@ public class User
     [EmailAddress]
     public required string Email { get; set; }
     public required string Username { get; set; }
-    public string? ImageUrl { get; set; } = string.Empty;
+    public required string ImageUrl { get; set; } = string.Empty;
 
     [Required]
     [MinLength(8)]
@@ -20,5 +20,6 @@ public class User
     public required DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
     public List<Social> Socials { get; set; } = new List<Social>();
+    public List<Education> Educations { get; set; } = new List<Education>();
     // public List<BlogPost> BlogPosts { get; set; } = new List<BlogPost>();
 }

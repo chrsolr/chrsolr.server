@@ -7,9 +7,9 @@ public class DataContext : DbContext
 
     public DbSet<User> Users => Set<User>();
     public DbSet<Social> Socials => Set<Social>();
+    public DbSet<Education> Educations => Set<Education>();
     // public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
     // public DbSet<About> About => Set<About>();
-    // public DbSet<Education> Educations => Set<Education>();
     // public DbSet<Responsibility> Responsibilities => Set<Responsibility>();
     // public DbSet<Job> Jobs => Set<Job>();
     // public DbSet<Technology> Technologies => Set<Technology>();
@@ -23,17 +23,6 @@ public class DataContext : DbContext
         // var innowattsId = Guid.NewGuid();
         // var preventiceId = Guid.NewGuid();
         // var codercampId = Guid.NewGuid();
-
-
-        // var about = new About()
-        // {
-        //     Id = aboutId,
-        //     FirstName = "Christian",
-        //     LastName = "Soler",
-        //     NickName = "Chrsolr",
-        //     Email = "chr.solr@gmail.com",
-        //     ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
-        // };
 
         var socials = new List<Social>
         {
@@ -83,34 +72,34 @@ public class DataContext : DbContext
             }
         };
 
-        // var educations = new List<Education>
-        // {
-        //     new()
-        //     {
-        //         Id = Guid.NewGuid(),
-        //         Order = 1,
-        //         Location = "Coder Camps, Pearland, TX",
-        //         Description = "9 Week .NET Full Stack Program, 8/2014",
-        //         AboutId = aboutId
-        //     },
-        //     new()
-        //     {
-        //         Id = Guid.NewGuid(),
-        //         Order = 2,
-        //         Location = "Rhode Island College, Providence, RI",
-        //         Description = "Bachelor's Degree in Computer Science, (78 Credits)",
-        //         AboutId = aboutId
-        //     },
-        //     new()
-        //     {
-        //         Id = Guid.NewGuid(),
-        //         Order = 3,
-        //         Location = "Monroe College, Bronx, NY",
-        //         Description =
-        //             "Associate Degree in Applied Science in Information Technology, 08/2011",
-        //         AboutId = aboutId
-        //     }
-        // };
+        var educations = new List<Education>
+        {
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Order = 1,
+                Location = "Coder Camps, Pearland, TX",
+                Description = "9 Week .NET Full Stack Program, 8/2014",
+                UserId = userId,
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Order = 2,
+                Location = "Rhode Island College, Providence, RI",
+                Description = "Bachelor's Degree in Computer Science, (78 Credits)",
+                UserId = userId,
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Order = 3,
+                Location = "Monroe College, Bronx, NY",
+                Description =
+                    "Associate Degree in Applied Science in Information Technology, 08/2011",
+                UserId = userId,
+            }
+        };
 
         // var jobs = new List<Job>
         // {
@@ -390,8 +379,8 @@ public class DataContext : DbContext
 
         modelBuilder.Entity<User>().HasData(user);
         modelBuilder.Entity<Social>().HasData(socials);
+        modelBuilder.Entity<Education>().HasData(educations);
         // modelBuilder.Entity<About>().HasData(about);
-        // modelBuilder.Entity<Education>().HasData(educations);
         // modelBuilder.Entity<Responsibility>().HasData(responsibilities);
         // modelBuilder.Entity<Technology>().HasData(technologies);
         // modelBuilder.Entity<Job>().HasData(jobs);
