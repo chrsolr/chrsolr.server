@@ -18,6 +18,7 @@ public class User
     public required string Password { get; set; }
     public required DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public required DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+    public List<Social> Socials { get; set; } = new List<Social>();
     // public List<BlogPost> BlogPosts { get; set; } = new List<BlogPost>();
-    // public List<Social> Socials { get; set; } = new List<Social>();
 }

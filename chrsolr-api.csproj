@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <!-- <Nullable>enable</Nullable> -->
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>chrsolr_api</RootNamespace>
     <UserSecretsId>bf06cb40-e6b8-4cb0-9d91-1266443ad84f</UserSecretsId>

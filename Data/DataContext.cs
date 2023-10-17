@@ -6,7 +6,7 @@ public class DataContext : DbContext
         : base(options) { }
 
     public DbSet<User> Users => Set<User>();
-    // public DbSet<Social> Socials => Set<Social>();
+    public DbSet<Social> Socials => Set<Social>();
     // public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
     // public DbSet<About> About => Set<About>();
     // public DbSet<Education> Educations => Set<Education>();
@@ -18,25 +18,12 @@ public class DataContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        var userId = Guid.NewGuid();
+        var userId = Guid.Parse("7ca4b089-8feb-4017-857a-b0129948a0c8"); // Guid.NewGuid();
         // var aboutId = Guid.NewGuid();
         // var innowattsId = Guid.NewGuid();
         // var preventiceId = Guid.NewGuid();
         // var codercampId = Guid.NewGuid();
 
-        var user = new User
-        {
-            Id = userId,
-            FirstName = "Christian",
-            LastName = "Soler",
-            NickName = "Chrsolr",
-            Email = "chr.solr@gmail.com",
-            Username = "chrsolr",
-            ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
-            Password = "",
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow
-        };
 
         // var about = new About()
         // {
@@ -48,53 +35,53 @@ public class DataContext : DbContext
         //     ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
         // };
 
-        // var socials = new List<Social>
-        // {
-        //     new()
-        //     {
-        //         Id = Guid.NewGuid(),
-        //         Url = "https://github.com/chrsolr/",
-        //         Name = "Github",
-        //         UserId = userId
-        //     },
-        //     new()
-        //     {
-        //         Id = Guid.NewGuid(),
-        //         Url = "https://www.linkedin.com/in/christiansoler/",
-        //         Name = "LinkedIn",
-        //         UserId = userId
-        //     },
-        //     new()
-        //     {
-        //         Id = Guid.NewGuid(),
-        //         Url = "https://codepen.io/chrsolr",
-        //         Name = "Codepen",
-        //         UserId = userId
-        //     },
-        //     new()
-        //     {
-        //         Id = Guid.NewGuid(),
-        //         Url = "https://www.instagram.com/7w3n7y/",
-        //         Name = "Instagram",
-        //         UserId = userId
-        //     },
-        //     new()
-        //     {
-        //         Id = Guid.NewGuid(),
-        //         Url = "https://www.twitch.tv/7w3n7y",
-        //         Name = "Twitch",
-        //         UserId = userId,
-        //         IsActive = false
-        //     },
-        //     new()
-        //     {
-        //         Id = Guid.NewGuid(),
-        //         Url = "https://www.youtube.com/@chrsolr",
-        //         Name = "YouTube",
-        //         UserId = userId,
-        //         IsActive = false
-        //     }
-        // };
+        var socials = new List<Social>
+        {
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Url = "https://github.com/chrsolr/",
+                Name = "Github",
+                UserId = userId
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Url = "https://www.linkedin.com/in/christiansoler/",
+                Name = "LinkedIn",
+                UserId = userId
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Url = "https://codepen.io/chrsolr",
+                Name = "Codepen",
+                UserId = userId
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Url = "https://www.instagram.com/7w3n7y/",
+                Name = "Instagram",
+                UserId = userId
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Url = "https://www.twitch.tv/7w3n7y",
+                Name = "Twitch",
+                UserId = userId,
+                IsActive = false
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                Url = "https://www.youtube.com/@chrsolr",
+                Name = "YouTube",
+                UserId = userId,
+                IsActive = false
+            }
+        };
 
         // var educations = new List<Education>
         // {
@@ -386,10 +373,25 @@ public class DataContext : DbContext
         //         JobId = codercampId
         //     },
         // };
+        //
+        var user = new User
+        {
+            Id = userId,
+            FirstName = "Christian",
+            LastName = "Soler",
+            NickName = "Chrsolr",
+            Email = "chr.solr@gmail.com",
+            Username = "chrsolr",
+            ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
+            Password = "",
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow,
+            Socials = socials
+        };
 
         modelBuilder.Entity<User>().HasData(user);
+        modelBuilder.Entity<Social>().HasData(socials);
         // modelBuilder.Entity<About>().HasData(about);
-        // modelBuilder.Entity<Social>().HasData(socials);
         // modelBuilder.Entity<Education>().HasData(educations);
         // modelBuilder.Entity<Responsibility>().HasData(responsibilities);
         // modelBuilder.Entity<Technology>().HasData(technologies);
