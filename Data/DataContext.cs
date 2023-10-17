@@ -385,8 +385,7 @@ public class DataContext : DbContext
             ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
             Password = "",
             CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow,
-            Socials = socials
+            UpdatedAt = DateTime.UtcNow
         };
 
         modelBuilder.Entity<User>().HasData(user);

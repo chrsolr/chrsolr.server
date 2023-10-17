@@ -17,7 +17,29 @@ public class AboutService : IAboutService
             "With over 6 years of experience as a Full Stack Developer, I've honed my skills in designing, developing, and implementing diverse applications using a wide array of technologies and programming languages. I am actively seeking a role in a company that values a supportive environment, where I can contribute my expertise, learn, and grow alongside fellow programming enthusiasts."
         };
 
-        return null;
+        var user = await _context.Users
+            .Where(user => user.Email == "chr.solr@gmail.com")
+            .Select(user => new AboutDTO
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                NickName = user.NickName,
+                Email = user.Email,
+                Username = user.Username,
+                ImageUrl = user.ImageUrl,
+                AboutMe = aboutMe,
+                CreatedAt = user.CreatedAt,
+                UpdatedAt = user.UpdatedAt,
+                Socials = user.Socials.Select(social => new SocialDTO
+                {
+                    Name = social.Name,
+                    Url = social.Url
+                }).ToList(),
+            })
+            .FirstOrDefaultAsync();
+
+
+        return user;
 
         // var about = await _context.About
         //     .Select(
