@@ -17,6 +17,7 @@ public class BlogPostService : IBlogPostService
             .Where(post => post.IsActive)
             .Select(post => new BlogPostDTO
             {
+                Id = post.Id,
                 Title = post.Title,
                 Summary = post.Summary,
                 Slug = post.Slug,

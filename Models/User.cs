@@ -24,5 +24,5 @@ public class User
     public List<Social> Socials { get; set; } = new List<Social>();
     public List<Education> Educations { get; set; } = new List<Education>();
     public List<Job> Jobs { get; set; } = new List<Job>();
-    // public List<BlogPost> BlogPosts { get; set; } = new List<BlogPost>();
+    public List<BlogPost> BlogPosts { get; set; } = new List<BlogPost>();
 }
