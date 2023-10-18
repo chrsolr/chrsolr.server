@@ -20,10 +20,10 @@ public class BlogController : ControllerBase
         return Ok(posts);
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<BlogPostDTO>> GetById(string id)
+    [HttpGet("{slug}")]
+    public async Task<ActionResult<BlogPostDTO>> GetBySlug(string slug)
     {
-        var post = await _blogPostService.GetById(id);
+        var post = await _blogPostService.GetBySlug(slug);
 
         if (post == null)
         {

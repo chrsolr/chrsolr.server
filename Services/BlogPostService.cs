@@ -17,7 +17,6 @@ public class BlogPostService : IBlogPostService
             .Where(post => post.IsActive)
             .Select(post => new BlogPostDTO
             {
-                Id = post.Id,
                 Title = post.Title,
                 Summary = post.Summary,
                 Slug = post.Slug,
@@ -33,13 +32,12 @@ public class BlogPostService : IBlogPostService
         return posts;
     }
 
-    public async Task<BlogPostDTO> GetById(string id)
+    public async Task<BlogPostDTO> GetBySlug(string slug)
     {
         var post = await _context.BlogPosts
-            .Where(post => post.Id == Guid.Parse(id))
+            .Where(post => post.Slug == slug)
             .Select(post => new BlogPostDTO
             {
-                Id = post.Id,
                 Title = post.Title,
                 Summary = post.Summary,
                 Slug = post.Slug,
