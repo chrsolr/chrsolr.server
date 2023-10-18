@@ -1,6 +1,11 @@
 version: "3.8"
 
 services:
+  web_api:
+    image: chrsolr-api:latest
+    container_name: chrsolr-api-app
+    ports:
+      - 5000:80
   mssql:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     container_name: sql_server2022
