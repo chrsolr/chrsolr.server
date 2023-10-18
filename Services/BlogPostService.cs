@@ -13,7 +13,22 @@ public class BlogPostService : IBlogPostService
 
     public async Task<List<BlogPostDTO>> GetAll()
     {
-        return new List<BlogPostDTO>();
-        // return await _context.BlogPosts.Select(post => _mapper.Map<BlogPostDTO>(post)).ToListAsync();
+        var posts = await _context.BlogPosts
+            .Where(post => post.IsActive)
+            .Select(post => new BlogPostDTO
+            {
+                Title = post.Title,
+                Summary = post.Summary,
+                Slug = post.Slug,
+                ImageUrl = post.ImageUrl,
+                Markdown = post.Markdown,
+                AuthorName = $"{post.User.FirstName} {post.User.LastName}",
+                AuthorUsername = post.User.Username,
+                AuthorImageUrl = post.User.ImageUrl,
+                CreatedAt = post.User.CreatedAt,
+                UpdatedAt = post.User.UpdatedAt,
+            }).ToListAsync();
+
+        return posts;
     }
 }
