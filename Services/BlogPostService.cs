@@ -32,4 +32,26 @@ public class BlogPostService : IBlogPostService
 
         return posts;
     }
+
+    public async Task<BlogPostDTO> GetById(string id)
+    {
+        var post = await _context.BlogPosts
+            .Where(post => post.Id == Guid.Parse(id))
+            .Select(post => new BlogPostDTO
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Summary = post.Summary,
+                Slug = post.Slug,
+                ImageUrl = post.ImageUrl,
+                Markdown = post.Markdown,
+                AuthorName = $"{post.User.FirstName} {post.User.LastName}",
+                AuthorUsername = post.User.Username,
+                AuthorImageUrl = post.User.ImageUrl,
+                CreatedAt = post.User.CreatedAt,
+                UpdatedAt = post.User.UpdatedAt,
+            }).FirstOrDefaultAsync();
+
+        return post;
+    }
 }

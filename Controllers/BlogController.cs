@@ -14,9 +14,22 @@ public class BlogController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<BlogPostDTO>>> Get()
+    public async Task<ActionResult<List<BlogPostDTO>>> GetAll()
     {
-        var post = await _blogPostService.GetAll();
+        var posts = await _blogPostService.GetAll();
+        return Ok(posts);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<BlogPostDTO>> GetById(string id)
+    {
+        var post = await _blogPostService.GetById(id);
+
+        if (post == null)
+        {
+            return NotFound();
+        }
+
         return Ok(post);
     }
 }
