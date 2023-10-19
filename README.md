@@ -11,11 +11,11 @@
 `dotnet ef database update`
 `dotnet ef database remove`
 
+`docker compose down && docker compose build && docker compose up -d`
+
+`docker build -t chrsolr-api .`
+
 ### ToDo's
 
-- DB uuidv4
-- User Table
-- Blog Table
-- Seeding
 - Auth
-
+- .env
