@@ -1,7 +1,7 @@
-version: "3.8"
+version: "3.9"
 
 networks:
-  chrsolr:
+  chrsolr-api:
     driver: bridge
 
 services:
@@ -14,11 +14,13 @@ services:
     depends_on:
       - mssql
     environment:
-      DB_CONNECTION_STRING: Data Source=localhost:1433; Database=chrsolr; User Id=SA; Password=S3CR3T_P8SS; MultipleActiveResultSets=true; TrustServerCertificate=True;
+      DB_CONNECTION_STRING: Data Source=sql_server2022; Database=chrsolr; User Id=SA; Password=S3CR3T_P8SS; MultipleActiveResultSets=true; TrustServerCertificate=True;
+      CONNECTIONSTRINGS__DEFAULTCONNECTION: Data Source=sql_server2022; Database=chrsolr; User Id=SA; Password=S3CR3T_P8SS; MultipleActiveResultSets=true; TrustServerCertificate=True;
+      ASPNETCORE_URLS: http://+:9000
     ports:
-      - 5080:80
+      - 5080:9000
     networks:
-      - chrsolr
+      - chrsolr-api
 
   mssql:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
@@ -29,9 +31,9 @@ services:
     ports:
       - 1433:1433
     volumes:
-      - mssql_data:/var/lib/mssql/mssql_data
+      - sqlserver:/var/opt/mssql
     networks:
-      - chrsolr
+      - chrsolr-api
 
 volumes:
-  mssql_data:
+  sqlserver:
