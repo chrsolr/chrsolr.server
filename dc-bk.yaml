@@ -14,7 +14,7 @@ services:
     depends_on:
       - mssql
     environment:
-      DB_CONNECTION_STRING: Data Source=localhost:1433; Database=chrsolr; User Id=SA; Password=S3CR3T_P8SS; MultipleActiveResultSets=true; TrustServerCertificate=True;
+      DB_CONNECTION_STRING: Data Source=localhost; Database=chrsolr; User Id=SA; Password=S3CR3T_P8SS; MultipleActiveResultSets=true; TrustServerCertificate=True;
     ports:
       - 5080:80
     networks:
@@ -29,7 +29,7 @@ services:
     ports:
       - 1433:1433
     volumes:
-      - mssql_data:/var/lib/mssql/mssql_data
+      - mssql_data:/var/lib/mssql_chrsolr/data
     networks:
       - chrsolr
 
