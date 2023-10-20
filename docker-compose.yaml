@@ -4,6 +4,8 @@ services:
   web_api:
     image: chrsolr-api:latest
     container_name: chrsolr-api-app
+    environment:
+      DB_CONNECTION_STRING: Data Source=localhost; Database=chrsolr; User Id=SA; Password=S3CR3T_P8SS; MultipleActiveResultSets=true; TrustServerCertificate=True
     ports:
       - 5080:80
   mssql:

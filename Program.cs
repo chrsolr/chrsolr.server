@@ -11,7 +11,14 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
-// Add services to the container.
+// Load .env file
+DotEnv.Load(Path.Combine(Directory.GetCurrentDirectory(), ".env"));
+
+// todo: get it to work on docker
+// var dbConnectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+// var port = Environment.GetEnvironmentVariable("PORT");
+// config.AddEnvironmentVariables();
+
 builder.Services.AddDbContext<DataContext>(
     // options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
