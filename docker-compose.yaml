@@ -17,8 +17,6 @@ services:
       - .env-docker
     ports:
       - 5080:9000
-    volumes:
-      - ./:/app
     networks:
       - chrsolr-api
 
