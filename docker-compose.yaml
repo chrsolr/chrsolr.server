@@ -10,13 +10,13 @@ services:
     container_name: chrsolr-api-app
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     depends_on:
       - mssql
     environment:
       DB_CONNECTION_STRING: Data Source=sql_server2022; Database=chrsolr; User Id=SA; Password=S3CR3T_P8SS; MultipleActiveResultSets=true; TrustServerCertificate=True;
-      CONNECTIONSTRINGS__DEFAULTCONNECTION: Data Source=sql_server2022; Database=chrsolr; User Id=SA; Password=S3CR3T_P8SS; MultipleActiveResultSets=true; TrustServerCertificate=True;
       ASPNETCORE_URLS: http://+:9000
+      SHOW_SWAGGER: true
     ports:
       - 5080:9000
     networks:

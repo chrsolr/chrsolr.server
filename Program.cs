@@ -58,11 +58,13 @@ builder.Services
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-app.UseSwagger();
-app.UseSwaggerUI();
-// }
+bool.TryParse(Environment.GetEnvironmentVariable("SHOW_SWAGGER"), out bool showSwaggerEndpoints);
+
+if (showSwaggerEndpoints == true)
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHttpsRedirection();
 
