@@ -17,5 +17,5 @@
 
 ### ToDo's
 
-- Auth
-- .env (Missing PORT Change)
+- Auth ( Partial: missing db verification and pull)
+- Refresh Token

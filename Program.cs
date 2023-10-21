@@ -11,7 +11,6 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
-// Load .env file
 DotEnv.Load(Path.Combine(Directory.GetCurrentDirectory(), ".env"));
 config.AddEnvironmentVariables();
 

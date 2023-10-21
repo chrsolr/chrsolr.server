@@ -1,7 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 
-public class UserLoginDTO
+public class UserRegisterDTO
 {
+    [Required]
+    public required string Username { get; set; }
+
     [Required]
     [EmailAddress]
     public required string Email { get; set; }

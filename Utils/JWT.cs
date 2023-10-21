@@ -11,6 +11,7 @@ public class JWT
     {
         _configuration = configuration;
     }
+
     public string GenerateToken(string username)
     {
         List<Claim> claims = new List<Claim>{

@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -16,20 +14,34 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public ActionResult<string> Login(UserLoginDTO userLoginDTO)
+    public ActionResult<string> Login(UserLoginDTO user)
     {
-        string password = userLoginDTO.Password;
+        // do this in service
+        // find user
+        // verify pass
+        // return token
+        var hash = "6MNWsac35QE0GMi0j1w7gEjB3K0hTwHM/WSSXq/DeJs=";
+        var salt = "+XUXnnmbI1bFh3I8y3oBxIS3RO+wcBpWgbciESQBNcj183c7QbBN7H5GL6Mqxda+pFn/2Oyl0CitSdGa7a+DLw==";
+        var passwordVerified = AuthUtils.VerifyPassword(user.Password, hash, salt);
 
-        SHA256 hash = SHA256.Create();
-        byte[] key = hash.ComputeHash(Encoding.ASCII.GetBytes(password));
-        byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+        if (!passwordVerified)
+        {
+            return Unauthorized();
+        }
 
-        string enc = AES.Encrypt(password, key, iv);
-        string dec = AES.Decrypt(enc, key, iv);
+        var token = new JWT(_configuration).GenerateToken(user.Email);
+        return Ok(token);
+    }
 
-        Console.WriteLine($"{enc} - {dec}");
+    [HttpPost("register")]
+    public ActionResult<dynamic> Register(UserRegisterDTO user)
+    {
+        (string Hash, string Salt) enc = AuthUtils.CreatePasswordHash(user.Password);
 
-        var token = new JWT(_configuration).GenerateToken(userLoginDTO.Username);
+        // verify user does not exist and register user
+        // if success create and return token
+
+        var token = new JWT(_configuration).GenerateToken(user.Username);
         return Ok(token);
     }
 }

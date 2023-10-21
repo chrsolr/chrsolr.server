@@ -377,6 +377,8 @@ public class DataContext : DbContext
         };
 
 
+        (string Hash, string Salt) enc = AuthUtils.CreatePasswordHash("SUP3R_S3CR3T_PA55W0RD");
+
         var user = new User
         {
             Id = userId,
@@ -386,7 +388,8 @@ public class DataContext : DbContext
             Email = "chr.solr@gmail.com",
             Username = "chrsolr",
             ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
-            Password = "",
+            Password = enc.Hash,
+            Salt = enc.Salt,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };

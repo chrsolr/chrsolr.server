@@ -1,9 +1,33 @@
 using System.Security.Cryptography;
 using System.Text;
 
-public class AES
+public class AuthUtils
 {
-    public static string Encrypt(string plainText, byte[] key, byte[] iv)
+    public static (string, string) CreatePasswordHash(string password)
+    {
+        using (var hmac = new HMACSHA256())
+        {
+            var salt = hmac.Key;
+            var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+            return (Convert.ToBase64String(hash, 0, hash.Length),
+                    Convert.ToBase64String(salt, 0, salt.Length));
+        }
+    }
+
+    public static bool VerifyPassword(string password, string passwordHash, string passwordSalt)
+    {
+        var decodedHash = Convert.FromBase64String(passwordHash);
+        var decodedSalt = Convert.FromBase64String(passwordSalt);
+
+        using (var hmac = new HMACSHA256(decodedSalt))
+        {
+            byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return hash.SequenceEqual(decodedHash);
+        }
+    }
+
+    public static string AesEncrypt(string plainText, byte[] key, byte[] iv)
     {
         Aes encryptor = Aes.Create();
         encryptor.Mode = CipherMode.CBC;
@@ -32,7 +56,7 @@ public class AES
         return Convert.ToBase64String(cipherBytes, 0, cipherBytes.Length);
     }
 
-    public static string Decrypt(string cipherText, byte[] key, byte[] iv)
+    public static string AesDecrypt(string cipherText, byte[] key, byte[] iv)
     {
         Aes encryptor = Aes.Create();
         encryptor.Mode = CipherMode.CBC;

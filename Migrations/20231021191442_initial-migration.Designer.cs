@@ -12,8 +12,8 @@ using chrsolr_api.Data;
 namespace chrsolr_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231017174059_seed-jobs")]
-    partial class seedjobs
+    [Migration("20231021191442_initial-migration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,61 @@ namespace chrsolr_api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("BlogPost", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Markdown")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Summary")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("BlogPosts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c8f332b4-8204-430c-b8ab-c4c740c77faf"),
+                            CreatedAt = new DateTime(2023, 10, 21, 19, 14, 42, 523, DateTimeKind.Utc).AddTicks(4693),
+                            ImageUrl = "https://media.licdn.com/dms/image/C4D12AQGVVggsU6DJmQ/article-cover_image-shrink_423_752/0/1520153484632?e=1684972800&v=beta&t=nUDHhz9VY50Mr5UNCu26xSNSy7k7Y1AoLazNlPaW3G8",
+                            IsActive = true,
+                            Markdown = "![](https://media.licdn.com/dms/image/C4D12AQGVVggsU6DJmQ/article-cover_image-shrink_423_752/0/1520153484632?e=1684972800&v=beta&t=nUDHhz9VY50Mr5UNCu26xSNSy7k7Y1AoLazNlPaW3G8)\n# CoderCamps Bootcamp as a Student\n\nI know plenty of people are looking into all these different programming Bootcamps. Since I attended one, I would like to share my opinion. I will start by talking about myself, and my programming experience prior to the camp. In addition I will share information about the structure of the camp during my time there.\n\n### About me\nAt age 29 I decided to get my G.E.D and go to college. I always loved computers, so choosing Information Technology was a no brainer. While working towards my degree I was introduced to an introductory C++ class. After that class all I wanted to do was programming. Since I also loved messing around with cellphones, I decided to learn more about mobile development. During the time I had a Windows Phone 7 cellphone. I started teaching myself C# and created my first application, a simple calculator.\n\nShortly after finishing my associate degree in Information Technology; I relocated to Rhode Island to pursue a Bachelors in Computer Science. The programming language taught in Rhode Island College was JAVA. Because of this and my love for mobile development, I started learning about Android Development. While at Rhode Island College I took a Software Engineer class where I built an app to find restaurants locally. I also designed an Xbox One Achievement tracker called  [Xchievements](https://www.youtube.com/watch?v=Sb2X2VhuPgY).\n\nBefore I could finish my degree I relocated once again to Houston, TX. My intentions were to find a job in the programming field. One day I saw a commercial about a programming Bootcamp advertising “Earn an average of $70k after graduation.” My first thought was “That’s BS”. But, I thought about it and decided to visit the school to get more information. My first impression was not great. I got an “it’s all bout business” vibe. After a week and much thinking and debating I decided to go.\n\n### Bootcamp time!\nSince I already had a programming background, I knew camp was not going to be as hard for me as my fellow classmates. Yes, I didn’t know anything about HTML, CSS3, JavaScript or anything that had to do with the web. But after being around and hearing so much programming you start picking up stuff quicker. I also had a month to prepare before the start of camp.\n\nAt the time, the camp was divided into three phases. Throughout all the different phases we built small applications imitating Facebook, Twitter and full CRUD (Create, Read, Update, Delete) applications. Below is a breakdown of the structure while I attended camp:\n\n#### Week 1-3\n-   HTML5\n-   CSS3\n-   JavaScript\n-   AngularJS\n\n#### Week 4-6\n-   C#\n-   ASP.NET MVC\n-   SQL Server\n-   Entity Framework\n-   Repository Pattern\n-   Web API\n-   Authentication\n\n#### Week 7-9\n-   Small group project\n-   Project inherited from previous group\n-   Individual project\n\n### Phase 1\n\nAt first, I was nervous to meet people as passionate as me about programming; as I was never surrounded by that type of environment while in college. Right away I knew everyone was there to learn. Of course, there were some personality issues between fellow students, including me; you just cannot have a bunch of people in a stressful environment without having some issues. The instructor was great. He could teach a caveman how to program, seriously. It was like he knew every form of making people learn.\n\nThe month I had to prepare really helped with HTML and CSS and the transition from an OOP language to JavaScript was seamless. In the other hand, I struggled getting my head around AngularJS. I was like “What the F*** is? Dependency Injection, Directives, Controllers and Services.” It was not a How? Question, but a Why? Question. So, I started to do my work as fast as I could and learned more about AngularJS. By the end of the first phase we got to know each other better, and everyone was getting on the same page.\n\n![](https://media.licdn.com/dms/image/C4D12AQEswgMFBdKamQ/article-inline_image-shrink_1500_2232/0/1520066214987?e=1684972800&v=beta&t=3djMkcY5F8jW39BgcZZ8hbE6yJwHJVAbU2IinxOGcLc)\n\n![](https://media.licdn.com/dms/image/C4D12AQEufCZ0uNH41A/article-inline_image-shrink_1500_2232/0/1520237234918?e=1684972800&v=beta&t=mo5y-t6YQtt-RL9QVEtbywantq5rPrR1TuaQwjPeTLA)\n\n### Phase 2\n\nThe second phase of the program was a little different. Thanks to my previous knowledge in OOP, the first week went smoothly. I took this opportunity and learned more about AngularJS and Twitter Bootstrap. I also helped my classmates understand C# and the OOP fundamentals. As we moved to ASP.NET, the pace picked up and things started getting overwhelming. I understood the classes but I would forget by the next day because we were being introduced to new logics everyday. I used my weekends to review everything we covered during the week.\n\nBy the third week most of the group had bonded. In our free time we played Jenga, went to lunch and solved programming problems together.\n\n![](https://media.licdn.com/dms/image/C4D12AQE57CN6jRM4Qg/article-inline_image-shrink_1500_2232/0/1520195237364?e=1684972800&v=beta&t=DvXIc3exMppjsUQFRV26eS2n9v9v8T6DRtkPOBemLQE)\n\n![](https://media.licdn.com/dms/image/C4D12AQHl0cUSNXi7gw/article-inline_image-shrink_1500_2232/0/1520063087886?e=1684972800&v=beta&t=CGJWeDaLZuyw5fuprqSdY9Lo3ZhqBqsJ_3KBIwnibx0)\n\n### Phase 3\n\nI feel like the third phase was where I learned the most. Not because I learned new skills, but because I got to use all the previous knowledge I learned at camp. During this phase we also got a chance to experience what to expect in the workplace. We needed to log our progress, complete tasks during given time and report all things to the staff, which pretended to be the client.\n\n![](https://media.licdn.com/dms/image/C4D12AQEGwZz6VuoIeQ/article-inline_image-shrink_1500_2232/0/1520040451164?e=1684972800&v=beta&t=PE3tTDYnDWdRoCAvtE7JRdmLhHMi0ZiKhEzCWZqFP6I)\n\n#### The Good\n\n-   Meet people with common passions\n-   Learn how others may solve a problem in a different way\n-   Learn plenty of information in a short time (This can be a bit stressful)\n-   Get help from real people and not my best friend stackoverflow.com\n-   Great environment\n\n#### The Bad\n\n-   This type of programming Bootcamp is not for everyone. It is pretty hard to get a grasp on programming in just 9 weeks with out prior knowledge. However it can be done.\n-   Do not go to Bootcamp for the wrong reasons. Remember that you are paying for this. If you are not willing to absorb everything you are taught, you wont get your moneys worth.\n-   Expanding on my previous bullet. Do not attend camp because you want a job or a great salary. To be a developer is not about knowing the syntax of a programming language. It is about taking a problem and figuring out how to solve it. You might think learning the basics will get you in the door. However if you don’t know how to brake down a problem, translate it to code and solve it efficiently, then you wont last long.\n\n### Overall\n\nCoding Bootcamp is good for people that want to learn programming or expand their knowledge, but only if they are incredibly passionate about it. Even though the boot camp staff wants you to succeed, it is all about your willingness to learn.\n\nThank you for reading.",
+                            Slug = "codercamps-bootcamp-as-a-student",
+                            Summary = "I know plenty of people are looking into all these different programming Bootcamps. Since I attended one, I would like to share my opinion. I will start by talking about myself, and my programming experience prior to the camp. In addition I will share information about the structure of the camp during my time there.",
+                            Title = "CoderCamps Bootcamp as a Student",
+                            UpdatedAt = new DateTime(2023, 10, 21, 19, 14, 42, 523, DateTimeKind.Utc).AddTicks(4693),
+                            UserId = new Guid("7ca4b089-8feb-4017-857a-b0129948a0c8")
+                        });
+                });
 
             modelBuilder.Entity("Education", b =>
                 {
@@ -52,7 +107,7 @@ namespace chrsolr_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e4833bb1-abeb-4596-a4e8-ebac6bf9d6bd"),
+                            Id = new Guid("58be6348-bb85-48ae-819b-c0d18416b0e5"),
                             Description = "9 Week .NET Full Stack Program, 8/2014",
                             Location = "Coder Camps, Pearland, TX",
                             Order = 1,
@@ -60,7 +115,7 @@ namespace chrsolr_api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("74577ea6-d113-4ab6-b653-f866e4dde059"),
+                            Id = new Guid("a2d7d7a9-c640-4fed-a0e7-64dd2a5feb6c"),
                             Description = "Bachelor's Degree in Computer Science, (78 Credits)",
                             Location = "Rhode Island College, Providence, RI",
                             Order = 2,
@@ -68,7 +123,7 @@ namespace chrsolr_api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8174eb84-3734-4252-932e-31622c4569d3"),
+                            Id = new Guid("5f1ab6b9-db87-495f-9326-f365813a1b47"),
                             Description = "Associate Degree in Applied Science in Information Technology, 08/2011",
                             Location = "Monroe College, Bronx, NY",
                             Order = 3,
@@ -106,7 +161,7 @@ namespace chrsolr_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             CompanyName = "Innowatts Inc",
                             EndDate = "Present",
                             StartDate = "February 2018",
@@ -115,7 +170,7 @@ namespace chrsolr_api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             CompanyName = "Preventice Solutions",
                             EndDate = "June 2017",
                             StartDate = "August 2015",
@@ -124,7 +179,7 @@ namespace chrsolr_api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             CompanyName = "Coder Camps",
                             EndDate = "March 2015",
                             StartDate = "September 2014",
@@ -154,74 +209,74 @@ namespace chrsolr_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3bf2167f-a66b-4ca9-94ec-04e9695ae76e"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("aa96e061-099c-4a11-b386-0d0b54176755"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "Built Web APIs with NodeJS, ExpressJS, Postgres, and MongoDB."
                         },
                         new
                         {
-                            Id = new Guid("27a6bc60-c2f6-427a-93db-ea519ab3a5e0"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("cd02c50a-4d89-4751-bfbe-5c2195803c8b"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "Decouple codebase and built components make the code reusable."
                         },
                         new
                         {
-                            Id = new Guid("48c28a1e-702c-4915-aca1-4a80a19fa34b"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("947c3d41-a484-4849-bbc7-1ea24ff008df"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "Build a RESTful API that communicates with various external RESTful & SOAP APIs utilizing a Microservice approach."
                         },
                         new
                         {
-                            Id = new Guid("45ba340c-c133-455d-ad4b-b5cc6f8f7546"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("b1fa3c58-69ef-4fd1-a42f-eb4496fb2f7a"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "Deploy dockerized applications to Kubernetes via Helm charts."
                         },
                         new
                         {
-                            Id = new Guid("54a4066a-0c68-46cc-8bed-edcedcf2b296"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("d5d148fa-8701-45aa-b8bf-02212b85dba1"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "Created JavaScript Modules from existing code using KnockoutJs, RequireJs, and ASP.NET."
                         },
                         new
                         {
-                            Id = new Guid("7d66a422-2548-4535-8115-990748df5897"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("9248ab96-8e2c-45d6-a3b5-d005569a7158"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "Find, Document, and implement design patterns such as Dependency Injection and Repository Pattern."
                         },
                         new
                         {
-                            Id = new Guid("404ae566-b128-4648-825f-b179dfd0ccd8"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("db7aee36-0132-4b20-9b25-07aac4c3d062"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "Imported and improved legacy code from older applications into an ASP.NET MVC application."
                         },
                         new
                         {
-                            Id = new Guid("12dcbfee-ec52-4793-a15e-4d7215ae9bcd"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("7faf26ae-175a-4dd7-83b0-ed38bdc565b2"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "Improved and modularized a highly customizable User Interface."
                         },
                         new
                         {
-                            Id = new Guid("7b52caac-d36c-460d-980a-afba409a0f43"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("68565b70-d48e-4646-b2bb-3b9a93fbd993"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "Re-designed the company’s website and layouts utilizing Razor Engine, Bootstrap, LESS CSS, JQuery, and HTML."
                         },
                         new
                         {
-                            Id = new Guid("6b53850e-d621-44d6-8dfe-696827ace71d"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("04a84673-76dc-48f6-8c51-9a651c0802ab"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "Designed and Implemented the “partner” section on the company's website using C# ASP.NET, MVC, Entity Framework, LINQ, Razor Engine, and AngularJS."
                         },
                         new
                         {
-                            Id = new Guid("6dc20a39-e1c8-4346-a2b8-73f074536ecc"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("c13067eb-6514-4e36-9424-2e20e49a4278"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "Implemented features where students can apply for a “partner’s” job through a website."
                         },
                         new
                         {
-                            Id = new Guid("ed822a33-9ee3-4a62-9d45-b8deba3e0482"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("f67baec2-4960-4c88-9a97-d7f5915daa24"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "Managed and led a team of 5-7 interns on daily assignments."
                         });
                 });
@@ -253,7 +308,7 @@ namespace chrsolr_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f2922d46-95bf-4954-b1d0-e3083fbb1536"),
+                            Id = new Guid("a77e6165-cc76-4505-9758-4a27881b035f"),
                             IsActive = true,
                             Name = "Github",
                             Url = "https://github.com/chrsolr/",
@@ -261,7 +316,7 @@ namespace chrsolr_api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5cfa6a0e-1181-4808-b104-2b3e1c528176"),
+                            Id = new Guid("76a5821d-c31e-4533-a7fd-2fb950ebbd1a"),
                             IsActive = true,
                             Name = "LinkedIn",
                             Url = "https://www.linkedin.com/in/christiansoler/",
@@ -269,7 +324,7 @@ namespace chrsolr_api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("dd6eaf18-8672-49e0-b9b8-3cebf22dddb5"),
+                            Id = new Guid("48f64a83-4d8f-4dd9-9069-1289ff8274ee"),
                             IsActive = true,
                             Name = "Codepen",
                             Url = "https://codepen.io/chrsolr",
@@ -277,7 +332,7 @@ namespace chrsolr_api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3c479ecc-2183-4a33-908a-efa430605f4a"),
+                            Id = new Guid("d4c4f98a-3261-4ab0-b316-6dc93efadb0c"),
                             IsActive = true,
                             Name = "Instagram",
                             Url = "https://www.instagram.com/7w3n7y/",
@@ -285,7 +340,7 @@ namespace chrsolr_api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d11346ef-fa29-4736-89b8-449405af3814"),
+                            Id = new Guid("06c2c530-508e-4acf-b46a-78af76a0f317"),
                             IsActive = false,
                             Name = "Twitch",
                             Url = "https://www.twitch.tv/7w3n7y",
@@ -293,7 +348,7 @@ namespace chrsolr_api.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7ea5712e-dd08-41a4-9949-d51b3e7ed5dd"),
+                            Id = new Guid("5d8362ce-fa5a-4f42-a4b9-4dcf8af6182c"),
                             IsActive = false,
                             Name = "YouTube",
                             Url = "https://www.youtube.com/@chrsolr",
@@ -322,140 +377,140 @@ namespace chrsolr_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1d2f1c84-739c-4e60-a4c1-6ca6662ebe4b"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("d2d145d6-78e7-41f1-a18d-218dde4f5a4b"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "AngularJs"
                         },
                         new
                         {
-                            Id = new Guid("ca676155-33a4-44c7-91b9-07fdaa028a33"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("82e00856-c9a7-4b28-897a-3ed2c36f2dba"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "ReactJs"
                         },
                         new
                         {
-                            Id = new Guid("85dcf5c0-d9f8-48ee-90ee-bd6b7db50a02"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("1d83ff1b-6b67-4b8e-bddc-650d167145da"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "Styled Components"
                         },
                         new
                         {
-                            Id = new Guid("54a70bb7-0489-492c-8da5-1cebcef9c113"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("c97a1772-d981-4229-b282-5b1ae5bd971f"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "Typescript"
                         },
                         new
                         {
-                            Id = new Guid("fcad6e47-4f86-46b6-b5a4-eb7b2df034ad"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("67e4ed41-58b3-4686-9219-47e757d02d5a"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "NodeJs"
                         },
                         new
                         {
-                            Id = new Guid("dd4ac557-78e6-4976-9b4e-568ea965154e"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("847f1559-4840-471c-9bd0-613573631042"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "MeteorJs"
                         },
                         new
                         {
-                            Id = new Guid("6d8425ad-0463-4f5e-8d18-c7df202da24f"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("9b450e74-15ce-4378-98dc-98bab5e6cc20"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "MongoDB"
                         },
                         new
                         {
-                            Id = new Guid("3f87bbb0-481c-4606-a20e-768247a4d3b8"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("e3cc4aa0-6010-4ea6-a5e9-9bc53fafd57a"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "Docker"
                         },
                         new
                         {
-                            Id = new Guid("58561326-2fbd-4609-9d5b-79e9e2427e7c"),
-                            JobId = new Guid("d91a8535-c3e8-4509-bb52-6cb54b9900c7"),
+                            Id = new Guid("3b9a497e-a667-4d21-9b81-9ea03b734d49"),
+                            JobId = new Guid("6d86e0c9-e8f8-4e3e-8f1f-f0daddf38272"),
                             Name = "Kubernetes"
                         },
                         new
                         {
-                            Id = new Guid("a071687b-3f5f-410a-a76f-5175a1041a34"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("84527d94-fb76-43a4-96d9-507f5b43588a"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "C#"
                         },
                         new
                         {
-                            Id = new Guid("8b890482-79b3-4db9-ba2e-dfd2c7b482e0"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("cbb3cf81-b879-4b6d-a9bb-0d23769ee979"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "ASP.NET MVC"
                         },
                         new
                         {
-                            Id = new Guid("48f6a742-2d9e-4195-913b-3d4c6a05c4a1"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("7522520f-11fe-4641-9ed4-6b6e0f4044e4"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "JavaScript"
                         },
                         new
                         {
-                            Id = new Guid("d3554e88-90bc-4fef-91ac-5da9e7b367d4"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("f7bcab27-c1c7-4f25-b476-f106236fec07"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "KnockoutJs"
                         },
                         new
                         {
-                            Id = new Guid("ffdc8057-ee78-44db-b376-a92180ccf47f"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("6e9ee9bf-029f-4392-ad99-de0a3963fd5a"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "RequireJs"
                         },
                         new
                         {
-                            Id = new Guid("7f05804d-26a2-4526-acd9-bcb681810822"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("ababeff2-e8db-4ace-9de4-f8d6b4321d1a"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "Entity Framework"
                         },
                         new
                         {
-                            Id = new Guid("7649ccd2-558e-4511-a06d-f8fe1faad64c"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("e6279612-7388-4679-8eaa-475865c7c6de"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "AJAX"
                         },
                         new
                         {
-                            Id = new Guid("6707929f-8a2d-4bd7-8530-f68d9281fe9e"),
-                            JobId = new Guid("5d83f458-2144-4ae3-8bd3-78e71dc4c960"),
+                            Id = new Guid("240c65a1-8bc4-445c-b9ec-4b150bcea464"),
+                            JobId = new Guid("2192bfa2-5fa5-45ab-92bb-e59e29754d2b"),
                             Name = "MS SQL"
                         },
                         new
                         {
-                            Id = new Guid("ae1f90d1-70bd-45fa-9fa4-3f02f7ccb488"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("979e1928-d462-43fc-a338-7b2f92cbd07e"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "C#"
                         },
                         new
                         {
-                            Id = new Guid("2203caf4-ad99-4957-9064-5fded8fe99da"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("9190b8b3-6c84-4b87-a2a3-8d8217726c69"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "ASP.NET MVC"
                         },
                         new
                         {
-                            Id = new Guid("63591471-0fb6-4b01-a7bb-cf010e5dde26"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("75ece98c-95d7-4dee-84bd-a6ab49bd0d06"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "AngularJs"
                         },
                         new
                         {
-                            Id = new Guid("0c6e4d46-253f-43ea-bc0d-2e856aa741be"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("f5ec7896-244c-4ab7-bd98-64eafc4c2417"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "MS SQL"
                         },
                         new
                         {
-                            Id = new Guid("34f4b55f-ec13-4ead-a2c0-af353d427474"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("4e4c34e1-0341-4bb7-99cb-06fb5949f444"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "AJAX"
                         },
                         new
                         {
-                            Id = new Guid("555e9f26-4bcf-4b1c-ac57-1aee11d6a462"),
-                            JobId = new Guid("089464e4-1a7c-4bdc-ae0c-09f4f6bdc4fa"),
+                            Id = new Guid("c20d3540-29ed-47d9-ab5c-3cd570af6186"),
+                            JobId = new Guid("736868cf-f2b7-42b9-805b-4c88bc101dd5"),
                             Name = "LINQ"
                         });
                 });
@@ -486,8 +541,11 @@ namespace chrsolr_api.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -503,16 +561,28 @@ namespace chrsolr_api.Migrations
                         new
                         {
                             Id = new Guid("7ca4b089-8feb-4017-857a-b0129948a0c8"),
-                            CreatedAt = new DateTime(2023, 10, 17, 17, 40, 58, 881, DateTimeKind.Utc).AddTicks(5650),
+                            CreatedAt = new DateTime(2023, 10, 21, 19, 14, 42, 523, DateTimeKind.Utc).AddTicks(5522),
                             Email = "chr.solr@gmail.com",
                             FirstName = "Christian",
                             ImageUrl = "https://i.imgur.com/9X6lkc5.jpg",
                             LastName = "Soler",
                             NickName = "Chrsolr",
-                            Password = "",
-                            UpdatedAt = new DateTime(2023, 10, 17, 17, 40, 58, 881, DateTimeKind.Utc).AddTicks(5650),
+                            Password = "6MNWsac35QE0GMi0j1w7gEjB3K0hTwHM/WSSXq/DeJs=",
+                            Salt = "+XUXnnmbI1bFh3I8y3oBxIS3RO+wcBpWgbciESQBNcj183c7QbBN7H5GL6Mqxda+pFn/2Oyl0CitSdGa7a+DLw==",
+                            UpdatedAt = new DateTime(2023, 10, 21, 19, 14, 42, 523, DateTimeKind.Utc).AddTicks(5522),
                             Username = "chrsolr"
                         });
+                });
+
+            modelBuilder.Entity("BlogPost", b =>
+                {
+                    b.HasOne("chrsolr_api.Models.User", "User")
+                        .WithMany("BlogPosts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Education", b =>
@@ -579,6 +649,8 @@ namespace chrsolr_api.Migrations
 
             modelBuilder.Entity("chrsolr_api.Models.User", b =>
                 {
+                    b.Navigation("BlogPosts");
+
                     b.Navigation("Educations");
 
                     b.Navigation("Jobs");
