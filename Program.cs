@@ -51,6 +51,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Services/Repository
 builder.Services
+    .AddScoped<IAuthService, AuthService>()
     .AddScoped<IAboutService, AboutService>()
     .AddScoped<IBlogPostService, BlogPostService>();
 

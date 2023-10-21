@@ -5,43 +5,35 @@ using Microsoft.AspNetCore.Mvc;
 public class AuthController : ControllerBase
 {
     private readonly ILogger<AuthController> _logger;
-    private readonly IConfiguration _configuration;
+    private readonly IAuthService _authService;
 
-    public AuthController(ILogger<AuthController> logger, IConfiguration configuration)
+    public AuthController(ILogger<AuthController> logger, IAuthService authService)
     {
         _logger = logger;
-        _configuration = configuration;
+        _authService = authService;
     }
 
     [HttpPost("login")]
-    public ActionResult<string> Login(UserLoginDTO user)
+    public async Task<ActionResult<string>> Login(UserLoginDTO user)
     {
-        // do this in service
-        // find user
-        // verify pass
-        // return token
-        var hash = "6MNWsac35QE0GMi0j1w7gEjB3K0hTwHM/WSSXq/DeJs=";
-        var salt = "+XUXnnmbI1bFh3I8y3oBxIS3RO+wcBpWgbciESQBNcj183c7QbBN7H5GL6Mqxda+pFn/2Oyl0CitSdGa7a+DLw==";
-        var passwordVerified = AuthUtils.VerifyPassword(user.Password, hash, salt);
-
-        if (!passwordVerified)
+        var token = await _authService.Login(user.Email, user.Password);
+        if (token is null)
         {
             return Unauthorized();
         }
 
-        var token = new JWT(_configuration).GenerateToken(user.Email);
         return Ok(token);
     }
 
     [HttpPost("register")]
-    public ActionResult<dynamic> Register(UserRegisterDTO user)
+    public async Task<ActionResult<string>> Register(UserRegisterDTO user)
     {
-        (string Hash, string Salt) enc = AuthUtils.CreatePasswordHash(user.Password);
+        var token = await _authService.Register(user.Email, user.Username, user.Password);
+        if (token is null)
+        {
+            return Conflict();
+        }
 
-        // verify user does not exist and register user
-        // if success create and return token
-
-        var token = new JWT(_configuration).GenerateToken(user.Username);
         return Ok(token);
     }
 }

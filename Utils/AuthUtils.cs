@@ -1,5 +1,8 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 public class AuthUtils
 {
@@ -25,6 +28,29 @@ public class AuthUtils
             byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             return hash.SequenceEqual(decodedHash);
         }
+    }
+
+    public static string GenerateToken(User user)
+    {
+        List<Claim> claims = new List<Claim>{
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim("emailVerified", "false")
+        };
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+            Environment.GetEnvironmentVariable("JWT_KEY")
+        ));
+
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
+        var token = new JwtSecurityToken(
+            claims: claims,
+            expires: DateTime.Now.AddDays(1),
+            signingCredentials: creds
+        );
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
     public static string AesEncrypt(string plainText, byte[] key, byte[] iv)
