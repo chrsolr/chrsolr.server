@@ -13,7 +13,9 @@
 
 `dotnet watch`
 
+`dotnet tool install csharpier -g`
 `dotnet tool install --global dotnet-ef`
+
 `dotnet add package Microsoft.EntityFrameworkCore --version 7.0.12`
 `dotnet add package Microsoft.EntityFrameworkCore.SQLServer --version 7.0.12`
 `dotnet add package Microsoft.EntityFrameworkCore.Design --version 7.0.12`

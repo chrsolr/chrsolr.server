@@ -35,7 +35,6 @@ public class AuthUtils
         List<Claim> claims = new List<Claim>{
             new Claim(ClaimTypes.Name, user.Username),
             new Claim(ClaimTypes.Email, user.Email),
-            new Claim("emailVerified", "false")
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(

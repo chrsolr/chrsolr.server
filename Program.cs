@@ -31,9 +31,12 @@ builder.Services
     {
         x.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidIssuer = config["JWT:Issuer"],
-            ValidAudience = config["JWT:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWT:KEY"]!)),
+            ValidIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER"),
+            ValidAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE"),
+            IssuerSigningKey =
+                new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY"))
+                ),
             ValidateIssuer = true,
             ValidateActor = true,
             ValidateLifetime = true,
