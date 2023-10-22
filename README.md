@@ -1,3 +1,14 @@
+### Needs
+
+- Web Api
+- JWT Based
+- JWT Refresh
+- Docker and Docker-Compose
+- Unit Test
+- AutoMapper?
+- .env file Support
+
+
 ### Commands
 
 `dotnet watch`
