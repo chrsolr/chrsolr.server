@@ -32,20 +32,22 @@ public class AuthUtils
 
     public static string GenerateToken(User user)
     {
+        var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
+        var issuer = Environment.GetEnvironmentVariable("JWT_ISSUER");
+        var audience = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
         List<Claim> claims = new List<Claim>{
             new Claim(ClaimTypes.Name, user.Username),
-            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Email, user.Email)
         };
-
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-            Environment.GetEnvironmentVariable("JWT_KEY")
-        ));
-
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
         var token = new JwtSecurityToken(
             claims: claims,
-            expires: DateTime.Now.AddDays(1),
+            expires: DateTime.Now.AddHours(1),
+            issuer: issuer,
+            audience: audience,
             signingCredentials: creds
         );
 

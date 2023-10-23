@@ -19,8 +19,7 @@ public class AboutController : ControllerBase
     public async Task<ActionResult<AboutDTO>> Get()
     {
         var about = await _aboutService.GetAboutMe();
-
-        if (about == null)
+        if (about is null)
         {
             return NotFound();
         }
