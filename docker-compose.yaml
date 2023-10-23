@@ -7,7 +7,7 @@ networks:
 services:
   web_api:
     image: chrsolr-api:latest
-    container_name: chrsolr-api-app
+    container_name: chrsolr-api
     build:
       context: .
       dockerfile: Dockerfile.dev
