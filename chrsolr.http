@@ -1,0 +1,6 @@
+@chrsolr_HostAddress = http://localhost:5136
+
+GET {{chrsolr_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
