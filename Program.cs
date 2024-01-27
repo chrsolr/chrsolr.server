@@ -1,10 +1,10 @@
-// global using chrsolr.Services;
-// global using chrsolr.DTOs;
 global using chrsolr.Data;
+global using chrsolr.DTOs;
+global using chrsolr.Interfaces;
 global using chrsolr.Models;
+global using chrsolr.Services;
 global using Microsoft.EntityFrameworkCore;
 
-// global using chrsolr.Interfaces;
 // using Microsoft.AspNetCore.Authentication.JwtBearer;
 // using Microsoft.IdentityModel.Tokens;
 // using System.Text;
@@ -20,10 +20,13 @@ var db =
     ?? builder.Configuration.GetConnectionString("DB");
 
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(db));
+builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IAboutService, AboutService>();
 
 var app = builder.Build();
 
@@ -35,42 +38,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing",
-    "Bracing",
-    "Chilly",
-    "Cool",
-    "Mild",
-    "Warm",
-    "Balmy",
-    "Hot",
-    "Sweltering",
-    "Scorching"
-};
-
-app.MapGet(
-        "/weatherforecast",
-        () =>
-        {
-            var forecast = Enumerable
-                .Range(1, 5)
-                .Select(index => new WeatherForecast(
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-                .ToArray();
-            return forecast;
-        }
-    )
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
+app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
