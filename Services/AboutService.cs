@@ -11,7 +11,7 @@ public class AboutService : IAboutService
 
     public async Task<AboutDTO> GetAboutMe()
     {
-        List<string> aboutMe = new List<string>
+        var aboutMe = new List<string>
         {
             "As a passionate and dedicated individual, I take pride in my work and approach each project with enthusiasm. Driven by challenges, I thrive in collaborative team environments and excel under pressure while juggling multiple projects.",
             "With over 6 years of experience as a Full Stack Developer, I've honed my skills in designing, developing, and implementing diverse applications using a wide array of technologies and programming languages. I am actively seeking a role in a company that values a supportive environment, where I can contribute my expertise, learn, and grow alongside fellow programming enthusiasts."
