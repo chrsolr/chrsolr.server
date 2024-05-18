@@ -1,11 +1,11 @@
 networks:
-  chrsolr-api:
+  chrsolr-server:
     driver: bridge
 
 services:
-  api:
-    image: chrsolr-api:latest
-    container_name: chrsolr-api
+  server:
+    image: chrsolr-server:latest
+    container_name: chrsolr-server
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -16,7 +16,7 @@ services:
     ports:
       - 5080:9000
     networks:
-      - chrsolr-api
+      - chrsolr-server
 
   mssql:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
@@ -29,7 +29,7 @@ services:
     volumes:
       - sqlserver:/var/opt/mssql
     networks:
-      - chrsolr-api
+      - chrsolr-server
 
 volumes:
   sqlserver:
